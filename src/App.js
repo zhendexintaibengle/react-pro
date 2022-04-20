@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import routeConfig from './routers/route';
 
 const Home = () => <div>Home</div>;
 const About = () => <div>About</div>;
@@ -18,20 +19,33 @@ export default class App extends React.Component {
     }
   }
 
+  RouterList() {
+    return routeConfig?.map(items => (
+      <Route
+        key={items.path}
+        path={items.path}
+        exact={true}
+        render={(props) => {
+          return (
+            items.render
+              ? items.render({ ...props, items })
+              : <items.component {...props} route={items} />
+          )
+        }}
+      />
+    ))
+  }
+
   render() {
     return (
       <div>
         <Router>
           <Link to="/">Home</Link>
           <br />
-          <Link to="/about">About</Link>
-          <br />
-          <Link to="/user">User</Link>
+          <Link to="/userlist">userlist</Link>
 
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/user" component={User} />
+            {this.RouterList()}
           </Switch>
         </Router>
       </div>

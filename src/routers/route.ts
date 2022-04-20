@@ -1,4 +1,5 @@
 import IndexPage from '../pages/indexpage/Index';
+import UserTableList from '../pages/userList/UserTableList';
 
 type RouteList = { path: string, component: any, indexRoute?: object, childRoutes?: Array<any> };
 
@@ -25,6 +26,10 @@ const routeConfig: Array<RouteList> = [
     //     ]
     //   }
     // ]
+  },
+  {
+    path: '/userlist',
+    component: UserTableList,
   }
 ];
 
