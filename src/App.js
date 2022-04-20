@@ -5,46 +5,36 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import IndexPage from './pages/indexpage/Index';
-import './assets/styles/App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-          <Switch>
-            <Route exact path="/about" component={IndexPage} />
-            <Route exact path="/users" component={User} />
-            <Route exact path="/" component={Home} />
-          </Switch>
-        </div>
-      </Router>
-    </div>
-  );
-}
-
-
-const About = () => <div>about</div>;
-
-const User = () => <div>User</div>;
 
 const Home = () => <div>Home</div>;
+const About = () => <div>About</div>;
+const User = () => <div>User</div>;
 
-export default App;
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Router>
+          <Link to="/">Home</Link>
+          <br />
+          <Link to="/about">About</Link>
+          <br />
+          <Link to="/user">User</Link>
+
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/user" component={User} />
+          </Switch>
+        </Router>
+      </div>
+    )
+  }
+}
